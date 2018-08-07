@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ife任务5</title>
+	<style>
+		body, div {
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			width: 100%;
+			height: 600px;
+			position: relative;
+			background-color: #ccc;
+		}
+		.cube_frame {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			perspective: 300px;
+			width: 200px;
+			height: 200px;
+			perspective-origin: left;
+		}
+		.cube {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			-webkit-transform-origin: 0px;
+			-moz-transform-origin: 0px;
+			-ms-transform-origin: 0px;
+			-o-transform-origin: 0px;
+			transform-origin: 0px;
+			/* 自身3d呈现 */
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			-webkit-animation: cubeWhirling 10s linear infinite paused;
+			-o-animation: cubeWhirling 10s linear infinite paused;
+			animation: cubeWhirling 10s linear infinite paused;
+		}
+		.cube:hover {
+			-webkit-animation: cubeWhirling 10s linear infinite;
+			-o-animation: cubeWhirling 10s linear infinite;
+			animation: cubeWhirling 10s linear infinite;
+		}
+		.cube_side {
+			position: absolute;
+			width: 200px;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			font-size: 40px;
+			color: #fff;
+		}
+		.cube_side:nth-child(1) {
+			background-color: rgba(204, 51, 178, 0.75);
+			transform: translateX(-200px) rotateY(-90deg);
+		}
+		.cube_side:nth-child(2) {
+			background-color: rgba(51, 87, 204, 0.75);
+			transform: translate3d(-100px, 0, -100px) rotateY(180deg);
+		}
+		.cube_side:nth-child(3) {
+			background-color: rgba(54, 204, 51, 0.75);
+			transform: translateX(0px) rotateY(90deg);
+		}
+		.cube_side:nth-child(4) {
+			background-color: rgba(204, 94, 51, 0.75);
+			transform: translate3d(-100px, 0, 100px);
+		}
+		.cube_side:nth-child(5) {
+			background-color: rgba(204, 189, 51, 0.75);
+			transform: translate(-100px, -100px) rotateX(90deg);
+		}
+		.cube_side:nth-child(6) {
+			background-color: rgba(204, 51, 79, 0.75);
+			transform: translate(-100px, 100px) rotateX(-90deg);
+		}
+		/* 动画 */
+		@-webkit-keyframes cubeWhirling {
+			from { -webkit-transform: rotateY(0deg) }
+			to { -webkit-transform: rotateY(360deg) }
+		}
+		@-o-keyframes cubeWhirling {
+			from { -o-transform: rotateY(0deg) }
+			to { -o-transform: rotateY(360deg) }
+		}
+		@-moz-keyframes cubeWhirling {
+			from { -moz-transform: rotateY(0deg) }
+			to { -moz-transform: rotateY(360deg) }
+		}
+		@keyframes cubeWhirling {
+			from { transform: rotateY(0deg) }
+			to { transform: rotateY(360deg) }
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="cube_frame">
+			<div class="cube">
+				<!-- 正方体的六个面 -->
+				<div class="cube_side">1</div>
+				<div class="cube_side">2</div>
+				<div class="cube_side">3</div>
+				<div class="cube_side">4</div>
+				<div class="cube_side">5</div>
+				<div class="cube_side">6</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

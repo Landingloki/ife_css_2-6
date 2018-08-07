@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css_transform</title>
+	<style>
+		body, div, span {
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			padding-top: 18px;
+			padding-left: 27px;
+		}
+		.item {
+			margin-right: 30px;
+			display: inline-block;
+			width: 56px;
+			height: 64px;
+			border: 2px solid #ebebeb;
+			background-color: #f7f6f6;
+			text-align: center;
+		}
+		.item span {
+			display: inline-block;
+			line-height: 64px;
+			color: #000;
+			font-size: 18px;
+			font-style: [FZYOUH_508R];
+		}
+		.item.item_1 {
+			-ms-transform: skew(30deg);
+			-moz-transform: skew(30deg);
+			-webkit-transform: skew(30deg);
+			transform: skew(30deg);
+		}
+		.item.item_2 {
+			-ms-transform: scaleX(0.5);
+			-moz-transform: scaleX(0.5);
+			-webkit-transform: scaleX(0.5);
+			transform: scaleX(0.5);
+		}
+		.item.item_3 {
+			-ms-transform: rotate(45deg);
+			-moz-transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+		.item.item_4 {
+			-ms-transform: translate(10px, 20px);
+			-moz-transform: translate(10px, 20px);
+			-webkit-transform: translate(10px, 20px);
+			transform: translate(10px, 20px);
+		}
+		/* 这个实在是不知道该怎么弄了 */
+		.item.item_5 {
+			-ms-transform: translate(10px, 20px) translate(10px, 20px)  translate(10px, 20px) scaleX(0.5) rotate(45deg) skew(30deg) scaleX(2);
+			-moz-transform: translate(10px, 20px) translate(10px, 20px)  translate(10px, 20px) scaleX(0.5) rotate(45deg) skew(30deg) scaleX(2);
+			-webkit-transform: translate(10px, 20px) translate(10px, 20px)  translate(10px, 20px) scaleX(0.5) rotate(45deg) skew(30deg) scaleX(2);
+			transform: translate(10px, 20px) translate(10px, 20px)  translate(10px, 20px) scaleX(0.5) rotate(45deg) skew(30deg) scaleX(2);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="item">
+			<span>box0</span>
+		</div>
+		<div class="item item_1">
+			<span>box1</span>
+		</div>
+		<div class="item item_2">
+			<span>box2</span>
+		</div>
+		<div class="item item_3">
+			<span>box3</span>
+		</div>
+		<div class="item item_4">
+			<span>box4</span>
+		</div>
+		<div class="item item_5">
+			<span>box5</span>
+		</div>
+	</div>
+</body>
+</html>

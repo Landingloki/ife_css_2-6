@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>炫cool的slider</title>
+	<style>
+		body, div, input {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			width: 100%;
+			height: 100%;
+		}
+		.container {
+			background: #ccc;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			overflow: hidden;
+		}
+		.bgPhoto {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			background-size: 90%;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+		.bgControlBox {
+			position: absolute;
+			z-index: 1000;
+			/* 控制器就flex了,反正也是IE9+才支持的动画 */
+			display: flex;
+			/* 把一行倒置就把最后一个放在最前面了 */
+			flex-direction: row-reverse;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			width: 80%;
+			height: 200px;
+			top: 80%;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			-ms-transform: translateX(-50%);
+			-moz-transform: translateX(-50%);
+			-o-transform: translateX(-50%);
+			transform: translateX(-50%);
+		}
+		.bgControl {
+			width: 19.5%;
+			height: auto;
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+		.bgControl a {
+			display: block;
+			width: 100%;
+			height: 200px;
+		}
+		.bgControl.ps,
+		.bgPhoto.ps {
+			background-image: url('./img/video-ps-1000x494.jpg');
+		}
+		.bgControl.pr,
+		.bgPhoto.pr {
+			background-image: url('./img/pr-video-1000x494.jpg');
+		}
+		.bgControl.ae,
+		.bgPhoto.ae {
+			background-image: url('./img/ae-video-1000x494.jpg');
+		}
+		.bgControl.ai,
+		.bgPhoto.ai {
+			background-image: url('./img/ai-video_1000x494.jpg');
+		}
+		.bgControl.id,
+		.bgPhoto.id {
+			background-image: url('./img/video-id-1000x494.jpg');
+		}
+		.bgPhoto.id:target {
+			-webkit-animation: toRight 0.5s ease-out;
+			-o-animation: toRight 0.5s ease-out;
+			animation: toRight 0.5s ease-out;
+		}
+		.bgPhoto.ai:target {
+			-webkit-animation: toTop 0.5s ease-out;
+			-o-animation: toTop 0.5s ease-out;
+			animation: toTop 0.5s ease-out;
+		}
+		.bgPhoto.ae:target {
+			-webkit-animation: toBigger 1s ease-in;
+			-o-animation: toBigger 1s ease-in;
+			animation: toBigger 1s ease-in;
+		}
+		.bgPhoto.pr:target {
+			-webkit-animation: toSmaller 1s ease-out;
+			-o-animation: toSmaller 1s ease-out;
+			animation: toSmaller 1s ease-out;
+		}
+		.bgPhoto.ps:target {
+			-webkit-animation: toBiggerWithRotating 0.7s ease-in-out;
+			-o-animation: toBiggerWithRotating 0.7s ease-in-out;
+			animation: toBiggerWithRotating 0.7s ease-in-out;
+		}
+		.bgPhoto:target {
+			z-index: 100;
+		}
+		/* 避免麻烦~ */
+		.bgPhoto:not(:target) {
+			z-index: -10;
+		}
+		@-webkit-keyframes toRight {
+			from { background-position: -500px center }
+			to { background-position: center center; }
+		}
+		@-o-keyframes toRight {
+			from { background-position: -500px center }
+			to { background-position: center center; }
+		}
+		@-moz-keyframes toRight {
+			from { background-position: -500px center }
+			to { background-position: center center; }
+		}
+		@keyframes toRight {
+			from { background-position: -500px center }
+			to { background-position: center center; }
+		}
+		@-webkit-keyframes toTop {
+			from { background-position: center 350px; }
+			to { background-position: center center; }
+		}
+		@-o-keyframes toTop {
+			from { background-position: center 350px; }
+			to { background-position: center center; }
+		}
+		@-moz-keyframes toTop {
+			from { background-position: center 350px; }
+			to { background-position: center center; }
+		}
+		@keyframes toTop {
+			from { background-position: center 350px; }
+			to { background-position: center center; }
+		}
+		@-webkit-keyframes toBigger {
+			from { -webkit-background-size: 9%; }
+			to { -webkit-background-size: 90%; }
+		}
+		@-o-keyframes toBigger {
+			from { -o-background-size: 9%; }
+			to { -o-background-size: 90%; }
+		}
+		@-moz-keyframes toBigger {
+			from { -moz-background-size: 9%; }
+			to { -moz-background-size: 90%; }
+		}
+		@keyframes toBigger {
+			from { background-size: 9%; }
+			to { background-size: 90%; }
+		}
+		@-webkit-keyframes toSmaller {
+			from { -webkit-background-size: 180%; }
+			to { -webkit-background-size: 90%; }
+		}
+		@-o-keyframes toSmaller {
+			from { -o-background-size: 180%; }
+			to { -o-background-size: 90%; }
+		}
+		@-moz-keyframes toSmaller {
+			from { -moz-background-size: 180%; }
+			to { -moz-background-size: 90%; }
+		}
+		@keyframes toSmaller {
+			from { background-size: 180%;}
+			to { background-size: 90%; }
+		}
+		@-webkit-keyframes toBiggerWithRotating {
+			from {
+				-webkit-transform: rotateZ(-360deg);
+				-webkit-background-size: 9%;
+			}
+			to {
+				-webkit-transform: rotateZ(0deg);
+				-webkit-background-size: 90%;
+			}
+		}
+		@-o-keyframes toBiggerWithRotating {
+			from {
+				-o-transform: rotateZ(-360deg);
+				-o-background-size: 9%;
+			}
+			to {
+				-o-transform: rotateZ(0deg);
+				-o-background-size: 90%;
+			}
+		}
+		@-moz-keyframes toBiggerWithRotating {
+			from {
+				-moz-transform: rotateZ(-360deg);
+				-moz-background-size: 9%;
+			}
+			to {
+				-moz-transform: rotateZ(0deg);
+				-moz-background-size: 90%;
+			}
+		}
+		@keyframes toBiggerWithRotating {
+			from {
+				transform: rotateZ(-360deg);
+				background-size: 9%;
+			}
+			to {
+				transform: rotateZ(0deg);
+				background-size: 90%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="bgPhotoBox">
+			<div id="id" class="bgPhoto id"></div>
+			<div id="ai" class="bgPhoto ai"></div>
+			<div id="ae" class="bgPhoto ae"></div>
+			<div id="pr" class="bgPhoto pr"></div>
+			<div id="ps" class="bgPhoto ps"></div>
+		</div>
+		<div class="bgControlBox">
+			<div class="bgControl ps">
+				<a href="#ps"></a>
+			</div>
+			<div class="bgControl pr">
+				<a href="#pr"></a>
+			</div>
+			<div class="bgControl ae">
+				<a href="#ae"></a>
+			</div>
+			<div class="bgControl ai">
+				<a href="#ai"></a>
+			</div>
+			<div class="bgControl id">
+				<a href="#id"></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

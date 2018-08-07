@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ife任务4</title>
+	<style>
+		div {
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			width: 100%;
+			height: 600px;
+			position: relative;
+		}
+		.t_card {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 302px;
+			height: 402px;
+			overflow: hidden;
+			cursor: pointer;
+			-ms-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			perspective: 400px;
+		}
+		.control {
+			/* .control来控制翻转 */
+			width: 300px;
+			height: 400px;
+			/* 声明舞台为3d */
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			-ms-transition: 0.4s;
+			-moz-transition: 0.4s;
+			-webkit-transition: 0.4s;
+			transition: 0.4s;
+		}
+		.control ._end {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: #fff;
+			background-position: center;
+			border: 1px solid #000;
+			border-radius: 15px;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			-ms-backface-visibility: hidden;
+			backface-visibility: hidden;
+		}
+		/* 正面 */
+		.control .front_end {
+			background-repeat: no-repeat;
+			background-image: url('img/正面.jpg');
+			-ms-transform: rotateY(0deg);
+			-moz-transform: rotateY(0deg);
+			-webkit-transform: rotateY(0deg);
+			transform: rotateY(0deg);
+		}
+		/* 反面 */
+		.control .back_end {
+			background-repeat: no-repeat;
+			background-image: url('img/反面.jpg');
+			-ms-transform: rotateY(180deg);
+			-moz-transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+			transform: rotateY(180deg);
+		}
+		.t_front .control {
+			-ms-transform: translateX(0px) rotateY(0deg);
+			-moz-transform: translateX(0px) rotateY(0deg);
+			-webkit-transform: translateX(0px) rotateY(0deg);
+			transform: translateX(0px) rotateY(0deg);
+		}
+		.t_back .control {
+			-ms-transform: translateX(2px) rotateY(180deg);
+			-moz-transform: translateX(2px) rotateY(180deg);
+			-webkit-transform: translateX(2px) rotateY(180deg);
+			transform: translateX(2px) rotateY(180deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="t_card t_front" onclick="turnCard(this)">
+			<div class="control">
+				<div class="_end front_end"></div>
+				<div class="_end back_end"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		// 通过切换类名来实现翻转
+		function turnCard (e) {
+			let cls = e.className;
+			if (/t_front/.test(cls)) {
+				e.className = cls.replace(/t_front/, 't_back');
+			} else if (/t_back/.test(cls)) {
+				e.className = cls.replace(/t_back/, 't_front');
+			}
+		}
+	</script>
+</body>
+</html>
